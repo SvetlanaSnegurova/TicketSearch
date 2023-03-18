@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 public class TicketTest {
 
     @Test
-    void sortTicketPrice() {
+    public void sortTicketPrice() {
         TicketRepository repo = new TicketRepository();
         TicketManager manager = new TicketManager(repo);
+
         Ticket ticket1 = new Ticket(1, 1000, "MSK", "SPB", 90);
         Ticket ticket2 = new Ticket(2, 1000, "KRD", "SPB", 90);
         Ticket ticket3 = new Ticket(3, 2000, "KRD", "AER", 60);
@@ -30,9 +31,10 @@ public class TicketTest {
     }
 
     @Test
-    void sortTicketPrice2() {
+    public void sortTicketPrice2() {
         TicketRepository repo = new TicketRepository();
         TicketManager manager = new TicketManager(repo);
+
         Ticket ticket1 = new Ticket(1, 1000, "MSK", "SPB", 90);
         Ticket ticket2 = new Ticket(2, 1000, "KRD", "SPB", 90);
         Ticket ticket3 = new Ticket(3, 2000, "KRD", "AER", 60);
@@ -54,9 +56,10 @@ public class TicketTest {
     }
 
     @Test
-    void sortAllTicket() {
+    public void sortAllTicket() {
         TicketRepository repo = new TicketRepository();
         TicketManager manager = new TicketManager(repo);
+
         Ticket ticket1 = new Ticket(1, 1000, "KRD", "MSK", 90);
         Ticket ticket2 = new Ticket(2, 1000, "KRD", "MSK", 90);
         Ticket ticket3 = new Ticket(3, 2000, "KRD", "MSK", 60);
@@ -76,10 +79,12 @@ public class TicketTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
-    void noSortTicket() {
+    public void noSortTicket() {
         TicketRepository repo = new TicketRepository();
         TicketManager manager = new TicketManager(repo);
+
         Ticket ticket1 = new Ticket(1, 1000, "KRD", "MSK", 90);
         Ticket ticket2 = new Ticket(2, 1000, "KRD", "AER", 90);
         Ticket ticket3 = new Ticket(3, 2000, "KRD", "SPB", 60);
@@ -96,6 +101,57 @@ public class TicketTest {
 
         Ticket[] expected = {};
         Ticket[] actual = manager.findAll("MSK", "KRD");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void findByIdTicket() {
+        TicketRepository repo = new TicketRepository();
+        TicketManager manager = new TicketManager(repo);
+        Ticket ticket1 = new Ticket(1, 1000, "KRD", "MSK", 90);
+        Ticket ticket2 = new Ticket(2, 1000, "KRD", "AER", 90);
+        Ticket ticket3 = new Ticket(3, 2000, "KRD", "SPB", 60);
+        Ticket ticket4 = new Ticket(4, 1500, "KRD", "EKB", 120);
+        Ticket ticket5 = new Ticket(5, 500, "KRD", "AER", 70);
+        Ticket ticket6 = new Ticket(6, 1000, "KRD", "BRK", 60);
+
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        repo.findById(ticket2.getId());
+
+        Ticket[] expected = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6};
+        Ticket[] actual = repo.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void TravelTime() {
+        TicketRepository repo = new TicketRepository();
+        TicketManager manager = new TicketManager(repo);
+
+        Ticket ticket1 = new Ticket(1, 1000, "KRD", "MSK", 90);
+        Ticket ticket2 = new Ticket(2, 1000, "KRD", "AER", 90);
+        Ticket ticket3 = new Ticket(3, 2000, "KRD", "SPB", 60);
+        Ticket ticket4 = new Ticket(4, 1500, "KRD", "EKB", 120);
+        Ticket ticket5 = new Ticket(5, 500, "KRD", "AER", 70);
+        Ticket ticket6 = new Ticket(6, 1000, "KRD", "BRK", 60);
+
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        ticket1.getTravelTime();
+
+        Ticket[] expected = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6};
+        Ticket[] actual = repo.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }

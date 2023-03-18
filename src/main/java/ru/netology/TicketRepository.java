@@ -28,9 +28,9 @@ public class TicketRepository {
     public void removeById(int id) {
         Ticket[] tmp = new Ticket[tickets.length];
         int index = 0;
-        for (Ticket product : tickets) {
-            if (product.getId() != id) {
-                tmp[index] = product;
+        for (Ticket ticket : tickets) {
+            if (ticket.getId() != id) {
+                tmp[index] = ticket;
                 index++;
             }
             tickets = tmp;

@@ -32,11 +32,11 @@ public class TicketManager {
     }
 
     private boolean matches(Ticket ticket, String from, String where) {
-            if (ticket.getFrom().equals(from)) {
-                if (ticket.getWhere().equals(where)) {
-                    return true;
-                }
+        if (ticket.getFrom().equals(from)) {
+            if (ticket.getWhere().equals(where)) {
+                return true;
             }
+        }
         return false;
     }
 }
