@@ -24,16 +24,4 @@ public class TicketRepository {
         }
         return null;
     }
-
-    public void removeById(int id) {
-        Ticket[] tmp = new Ticket[tickets.length];
-        int index = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getId() != id) {
-                tmp[index] = ticket;
-                index++;
-            }
-            tickets = tmp;
-        }
-    }
 }

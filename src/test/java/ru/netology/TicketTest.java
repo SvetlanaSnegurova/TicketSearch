@@ -158,4 +158,28 @@ public class TicketTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void findByIdTicket2() {
+        TicketRepository repo = new TicketRepository();
+        TicketManager manager = new TicketManager(repo);
+
+        Ticket ticket1 = new Ticket(1, 1000, "KRD", "MSK", 90);
+        Ticket ticket2 = new Ticket(2, 1000, "KRD", "AER", 90);
+        Ticket ticket3 = new Ticket(3, 2000, "KRD", "SPB", 60);
+        Ticket ticket4 = new Ticket(4, 1500, "KRD", "EKB", 120);
+        Ticket ticket5 = new Ticket(5, 500, "KRD", "AER", 70);
+        Ticket ticket6 = new Ticket(6, 1000, "KRD", "BRK", 60);
+
+        repo.add(ticket1);
+        repo.add(ticket3);
+        repo.add(ticket4);
+        repo.add(ticket5);
+        repo.add(ticket6);
+
+        Ticket[] actual = {null};
+        Ticket[] expected = new Ticket[]{repo.findById(2)};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
